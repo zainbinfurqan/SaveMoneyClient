@@ -30,9 +30,7 @@ function Loader(props) {
 
   return (
     <Dialog
-      // open={true}
       open={States_.openLoginLoddingPanel}
-      // onClose={handleClose}
       className="loder-main"
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"

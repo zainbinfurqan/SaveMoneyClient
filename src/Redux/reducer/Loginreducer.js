@@ -12,7 +12,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
-      console.log(action.payload);
       return {
         ...state,
         Auth: {
@@ -23,7 +22,6 @@ export default (state = initialState, action) => {
         }
       };
     case LOGOUT:
-      console.log("ok");
       return {
         // ...state,
         Auth: { LoginKey: "", Email: "", LoginKeyFlag: false }

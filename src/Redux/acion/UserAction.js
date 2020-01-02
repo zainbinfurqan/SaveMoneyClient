@@ -5,7 +5,6 @@ export const USERDELETE = "USERDELETE";
 export const LOGOUT = "LOGOUT";
 
 export const userdelete = params => dispatch => {
-    console.log(params);
     return new Promise((resolve, reject) => {
       FetchUtil({
         url: appendQueryParams(`/user/deleteuser`),
@@ -18,8 +17,6 @@ export const userdelete = params => dispatch => {
         }
       })
         .then(res => {
-          // console.log(res);
-  
           resolve(res);
           dispatch({ type: LOGOUT });
         })

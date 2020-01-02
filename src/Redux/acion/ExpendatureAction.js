@@ -4,9 +4,7 @@ import { appendQueryParams } from "../../utilfunction/UrlUtils.js";
 export const ADDEXPENDATURE = "ADDEXPENDATURE";
 export const DELETEEXPENDATURE = "DELETEEXPENDATURE";
 export const SELECTEDMONTHSTATUS = "SELECTEDMONTHSTATUS";
-
 export const addexpendature = params => dispatch => {
-  // console.log(params);
   return new Promise((resolve, reject) => {
     FetchUtil({
       url: appendQueryParams(`/user/addexpendature`),
@@ -19,10 +17,7 @@ export const addexpendature = params => dispatch => {
       }
     })
       .then(res => {
-        // console.log(res);
-
         resolve(res);
-
         dispatch({ type: ADDEXPENDATURE });
       })
       .catch(err => {
@@ -32,7 +27,6 @@ export const addexpendature = params => dispatch => {
 };
 
 export const deleteexpendature = params => dispatch => {
-  console.log(params);
   return new Promise((resolve, reject) => {
     FetchUtil({
       url: appendQueryParams(`/user/deleteexpendature`),
@@ -45,10 +39,7 @@ export const deleteexpendature = params => dispatch => {
       }
     })
       .then(res => {
-        // console.log(res);
-
         resolve(res);
-
         dispatch({ type: DELETEEXPENDATURE });
       })
       .catch(err => {
@@ -58,7 +49,6 @@ export const deleteexpendature = params => dispatch => {
 };
 
 export const getselectedmonthstatus = params => dispatch => {
-  console.log(params);
   return new Promise((resolve, reject) => {
     FetchUtil({
       url: appendQueryParams(
@@ -67,10 +57,7 @@ export const getselectedmonthstatus = params => dispatch => {
       method: "GET"
     })
       .then(res => {
-        // console.log(res);
-
         resolve(res);
-
         dispatch({ type: SELECTEDMONTHSTATUS });
       })
       .catch(err => {

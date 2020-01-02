@@ -9,15 +9,12 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Swal from "sweetalert2";
 import Cryptr from "cryptr";
-import Select from "react-select";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import { logout } from "../../Redux/acion/LoginAction.js";
-import back_icon from "../../image/back-icon.png";
-import Header from '../Header/Header'
 import {
   userdelete,
   changepasswordafterlogin
@@ -50,7 +47,6 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     width: "80%"
-    //   margin:'auto',
   },
   p: {
     textAlign: "center"
@@ -69,7 +65,6 @@ function Setting(props) {
     loading: false
   });
   useEffect(() => {
-    console.log(props);
     if (props.authData.LoginKeyFlag !== false) {
     } else {
       props.history.replace("/home");
@@ -90,7 +85,6 @@ function Setting(props) {
       cancelButtonText: "No, keep it"
     }).then(result => {
       if (result.value) {
-        console.log(props);
         let params = {
           data: props.authData
         };
@@ -99,8 +93,6 @@ function Setting(props) {
           props.history.replace("/");
         });
 
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
       }
@@ -127,7 +119,6 @@ function Setting(props) {
       loginKey: props.authData.LoginKey
     };
     props.changepasswordafterlogin(params).then(res => {
-      console.log(res);
       if (res.msg === "change successfull") {
         setStates({
           ...States_,
@@ -138,9 +129,7 @@ function Setting(props) {
           loginKey: props.authData.LoginKey
         };
         props.logout(params).then(() => {
-          // console.log(props)
           props.history.replace("/login");
-          // props.history.replace("/home");
         });
       } else {
         Swal.fire(res.msg);
@@ -155,19 +144,12 @@ function Setting(props) {
 
   return (
     <div className="">
-      {/* <div className="close-setting"> */}
-      {/* <Header/> */}
       <div style={{ height: '40px', padding: '5px', width: 'fit-content' }} onClick={closeStatusHandle}>
         <i className="fas fa-caret-left" style={{ float: 'left', margin: '0px 0px 0px 5px', fontSize: '23px' }} />
         <p style={{ width: 'fit-content', margin: '1px', float: 'left', fontSize: '15px' }}>Back</p>
       </div>
-      {/* <p className={`${classes.close} close-tab`} onClick={closeStatusHandle}>
-          Back
-          <img src={back_icon} />
-        </p> */}
-      {/* </div> */}
+      
 
-      {/* <h3 className={classes.h2}>Setting</h3> */}
       <Paper className={classes.root}>
         <Typography variant="p" component="p" className={classes.p}>
           Want To Delete Account?
@@ -192,9 +174,7 @@ function Setting(props) {
           <Typography variant="p" component="p" className={classes.p}>
             <TextField
               className={classes.text}
-              // id="standard-password-input"
               label="Email"
-              // className={classes.textField}
               type="email"
               autoComplete="current-password"
               margin="normal"
@@ -206,9 +186,7 @@ function Setting(props) {
           <Typography variant="p" component="p" className={classes.p}>
             <TextField
               className={classes.text}
-              // id="standard-password-input"
               label="Old Password"
-              // className={classes.textField}
               type="password"
               autoComplete="current-password"
               margin="normal"
@@ -220,9 +198,7 @@ function Setting(props) {
           <Typography variant="p" component="p" className={classes.p}>
             <TextField
               className={classes.text}
-              // id="standard-password-input"
               label="New Passowrd"
-              // className={classes.textField}
               type="password"
               autoComplete="current-password"
               margin="normal"
@@ -243,9 +219,7 @@ function Setting(props) {
         </Paper>
       )}
       <Dialog
-        // open={true}
         open={States_.openLoginLoddingPanel}
-        // onClose={handleClose}
         className="loder-main"
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -258,7 +232,6 @@ function Setting(props) {
               size={150}
               color={"#123abc"}
               loading={States_.loading}
-            // loading={true}
             />
           </DialogContentText>
         </DialogContent>

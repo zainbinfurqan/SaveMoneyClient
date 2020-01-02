@@ -5,7 +5,6 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
 export const login = params => dispatch => {
-  console.log(params);
   return new Promise((resolve, reject) => {
     FetchUtil({
       url: appendQueryParams(`/user/login`),
@@ -18,15 +17,12 @@ export const login = params => dispatch => {
       }
     })
       .then(res => {
-        console.log(res.msg);
-
         resolve(res);
         if (res.msg.msg === "Login Successfully") {
           let abc = {
             name: res.msg.name,
             params
           }
-          // console.log("login")
           dispatch({ type: LOGIN, payload: abc });
         } else {
           dispatch({ type: LOGIN });

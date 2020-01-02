@@ -1,12 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
-// import * as serviceWorker from "./serviceWorker";
-import WithLoginHeader from './pages/Header/WithLoginHeader.js'
-import WithLogoutHeader from './pages/Header/WithlogoutHeader'
 import Home from "./pages/home/Home.js";
-import WebHome from './pages/WebHome/WebHome.js'
 import UserHome from "./pages/user/UserHome.js";
 import AddExpensive from "./pages/Expensive/AddExpensive.js";
 import Login from "./pages/Auth/Login.js";
@@ -21,32 +16,13 @@ import ExpendatureDetails from './pages/Expensive/ExpendatureDetails.js'
 import Setting from './pages/Setting/Setting.js'
 import SelecteMonthExpendature from './pages/Expensive/SelectedMonthExpendature/SelecteMonthExpendature.js'
 import PDFgenerate from './pages/PFDgenerate'
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './App.js';
-// import { Provider } from "react-redux";
-// import {store,persistor} from "./Redux/store";
-// import { PersistGate } from 'redux-persist/integration/react'
-// const routing = (
-//   // <AuthProvider>
-//   <Router>
-//     <Route exact path="/" component={App} />
-//     <Route exact path="/home" component={Home} />
-//     <Route exact path="/login" component={Login} />
-//     <Route exact path="/signup" component={SignUp} />
-//     <Route exact path="/userhome" component={UserHome} />
-//     <Route exact path="/addexpensive" component={AddExpensive} />
-//   </Router>
-// );
 
 function Routing(){
  
     return (
       <Router>
         <Header/>
-        {/* <Route exact path="/" component={WebHome} /> */}
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/webhome" component={WebHome} /> */}
         <Route exact path="/home" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
@@ -62,7 +38,6 @@ function Routing(){
     );
   }
 
-// ReactDOM.render(routing, document.getElementById("root"));
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

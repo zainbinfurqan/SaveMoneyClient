@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./SelecteMonthExpendature.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -8,21 +8,15 @@ import Swal from "sweetalert2";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/core";
 import Dialog from "@material-ui/core/Dialog";
-import back_icon from '../../../image/back-icon.png'
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import Header from '../../Header/Header.js'
 const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
 `;
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-    backgroundColor: "green",
-    width: 100
-  },
+
   close: {
     float: "left",
     cursor: "pointer",
@@ -57,37 +51,34 @@ function SelecteMonthExpendature(props) {
   }
 
   function selectMnthHandle(key, e) {
-    console.log(key, e);
     SetValues({ ..._States, SelectedMonth: e.target.value });
   }
 
   function getSelectedMonthStatus() {
-    SetValues({ ..._States, openLoginLoddingPanel: true, loading: true });
+    if (_States.SelectedMonth) {
+      SetValues({ ..._States, openLoginLoddingPanel: true, loading: true });
+      let params = {
+        month: _States.SelectedMonth,
+        loginKey: props.AuthData.Auth.LoginKey,
+        Email: props.AuthData.Auth.Email
+      };
+      props.getselectedmonthstatus(params).then(res => {
+        if (res.status) {
+          SetValues({
+            ..._States,
+            StausData: res[0],
+            TotalAmmount: res[1][0].TotalMoney,
+            openLoginLoddingPanel: false,
+            loading: false
+          });
+        } else {
+          Swal.fire("no data found")
+          SetValues({ ..._States, openLoginLoddingPanel: false, loading: false });
 
-    let params = {
-      month: _States.SelectedMonth,
-      loginKey: props.AuthData.Auth.LoginKey,
-      Email: props.AuthData.Auth.Email
-    };
-    props.getselectedmonthstatus(params).then(res => {
-      console.log(res);
-      if (res[0].length === 0) {
-        Swal.fire("No Data Found");
-        SetValues({
-          ..._States,
-          openLoginLoddingPanel: false,
-          loading: false
-        });
-      } else {
-        SetValues({
-          ..._States,
-          StausData: res[0],
-          TotalAmmount: res[1][0].TotalMoney,
-          openLoginLoddingPanel: false,
-          loading: false
-        });
-      }
-    });
+        }
+      });
+    }
+
   }
   return (
     <div className="">
@@ -95,10 +86,7 @@ function SelecteMonthExpendature(props) {
         <i className="fas fa-caret-left" style={{ float: 'left', margin: '0px 0px 0px 5px', fontSize: '23px' }} />
         <p style={{ width: 'fit-content', margin: '1px', float: 'left', fontSize: '15px' }}>Back</p>
       </div>
-      {/* <p className={`close-tab`} onClick={closeSelectedExpendatureHanlde}>
-        Back
-          <img src={back_icon} />
-      </p> */}
+
       <div className='container'>
         <select
           name="selectOption"
@@ -166,9 +154,7 @@ function SelecteMonthExpendature(props) {
         </div>
       </div>
       <Dialog
-        // open={true}
         open={_States.openLoginLoddingPanel}
-        // onClose={handleClose}
         className="loder-main"
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -181,7 +167,6 @@ function SelecteMonthExpendature(props) {
               size={150}
               color={"#123abc"}
               loading={_States.loading}
-            // loading={true}
             />
           </DialogContentText>
         </DialogContent>

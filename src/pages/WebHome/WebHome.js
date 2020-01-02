@@ -1,6 +1,5 @@
 import React, { useEffect, useSate } from 'react';
 import './WebHome.css';
-import intro from '../../image/LogoGif.gif'
 import Paper from "@material-ui/core/Paper";
 import right_arrow from '../../image/Right-Arrow.png'
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,10 +14,17 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         margin: "auto",
         // marginTop: "30px"
+
     },
 }))
 function WebHome(props) {
     const classes = useStyles();
+    // let [Stats_, SetState__] = useSate({
+    //     text: '',
+    //     isDeleting: false,
+    //     loopNum: 0,
+    //     typingSpeed: 150
+    // })
 
     useEffect(() => {
         console.log(props)
@@ -30,7 +36,11 @@ function WebHome(props) {
 
     function loginHandle() {
         props.history.replace('/home');
+
     }
+   
+
+
     return (
         <div className="row Webhome-container">
             <div className='header'>
@@ -50,7 +60,11 @@ function WebHome(props) {
                 </div>
             </div>
             <div className="intro-main">
-                <img src={intro} />
+                <div class="flex">
+                    <span>{this.state.text}</span>
+                    <p class="header-sub-title blink">|</p>
+                </div>
+                {/* <img src={intro} /> */}
             </div>
             <div className='intro-sub-main'>
                 <div className='into-sub-left'></div>

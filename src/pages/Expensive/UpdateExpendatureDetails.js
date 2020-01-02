@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-// import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
 import "./updateexpen.css";
@@ -31,7 +29,6 @@ function UpdateExpendatureDetails(props) {
   });
 
   useEffect(() => {
-    // console.log(props);
     if (State_.updatePanelFlag !== props.open) {
       setValue({ ...State_, updatePanelFlag: props.open });
     }
@@ -49,7 +46,6 @@ function UpdateExpendatureDetails(props) {
         TransitionComponent={Transition}
         keepMounted
         className="update-main"
-        // onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
@@ -60,7 +56,6 @@ function UpdateExpendatureDetails(props) {
               variant="contained"
               color="primary"
                 className={classes.button}
-              // onClick={submitExpendatureBtn}
             >
               Update
             </Button>

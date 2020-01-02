@@ -3,41 +3,17 @@ import { connect } from "react-redux";
 import ClipLoader from 'react-spinners/ClipLoader';
 import { css } from '@emotion/core';
 import { getcurrentmonthstatus } from "../../Redux/acion/CurrentMonthStatusAction.js";
-// import { Document, Page, Text, View, StyleSheet } from 'react-pdf';
 import "./currentstatus.css";
-// import jsPDF from "jspdf";
-// import "jspdf-autotable";
-import Pdf from "react-to-pdf";
-import back_icon from '../../image/back-icon.png'
-import Header from '../Header/Header.js'
-import { makeStyles } from "@material-ui/core/styles";
 const override = css`
     display: block;
     margin: 0 auto;
     border-color: red;
 `;
-// const doc = new jsPDF();
 const ref = React.createRef();
-const options = {
-  orientation: "potrait",
-  unit: "in",
-  format: [500, 700.4],
-  fontsize: 20
-  // unit: 'inches',
-  // format: [8.27,11.69]
-};
-const useStyles = makeStyles(theme => ({
-  btn: {
-    color: "white",
-    backgroundColor: "blueviolet",
-    border: "solid",
-    height: "38px",
-    borderRadius: "6px"
-  }
-}));
+
+
 
 function CurrentMonthStatus(props) {
-  const classes = useStyles();
 
   let [State_, setValues] = useState({
     StausData: [],
@@ -54,19 +30,14 @@ function CurrentMonthStatus(props) {
   useEffect(() => {
     console.log(props);
     if (props.authData.LoginKeyFlag !== false) {
-      // setFlag((loginFlag = true));
     } else {
-      // console.log("ok");
-      // setFlag((loginFlag = false));
       props.history.replace("/home");
     }
     return () => {
-      // console.log(props);
     };
   });
   useEffect(() => {
 
-    // console.log(props);
     if (props.authData.LoginKeyFlag !== false) {
       setValues({ ...State_, loading: true })
       let params = {
@@ -74,7 +45,6 @@ function CurrentMonthStatus(props) {
         email: props.authData.Email
       };
       props.getcurrentmonthstatus(params).then(res => {
-        console.log(res);
         setValues({
           ...State_,
           StausData: res[0],
@@ -88,32 +58,17 @@ function CurrentMonthStatus(props) {
     }
   }, []);
 
-  useEffect(() => { }, []);
-  // function downloadPDF() {
-  //   console.log("download");
-  //   doc.autoTable({ html: "#my-table" });
-  //   doc.save("table.pdf");
-  // }
 
   return (
     <div className="currentStatus">
-      {/* {console.log(State_.Email)} */}
-      {/* <Header/> */}
-      {/* <p className={`close-tab`} onClick={closeStatusHandle}> */}
       <div style={{height:'40px',padding:'5px',width:'fit-content'}} onClick={closeStatusHandle}>
         <i className="fas fa-caret-left"  style={{float:'left',margin:'0px 0px 0px 5px', fontSize: '23px' }} />
         <p style={{width:'fit-content', margin: '1px',float:'left',fontSize:'15px'}}>Back</p>
       </div>
-          {/* <img src={back_icon} /> */}
-      {/* </p> */}
       <div className="container" ref={ref}>
         <div className="pdf-page">
-          {/* <h2>Current Month Statement</h2> */}
           <h2 className="">E-STATEMENT OF MONTH</h2>
           <div className="profile-detail">
-            {/* <p>
-              <span>Name: </span>
-            </p> */}
             <p>
               <span>Email: {State_.Email}</span>
             </p>
@@ -147,7 +102,6 @@ function CurrentMonthStatus(props) {
           </table>
 
         </div>
-        {/* <p onClick={downloadPDF}>Download PDF</p> */}
       </div>
       <div
         style={{
@@ -163,13 +117,7 @@ function CurrentMonthStatus(props) {
           color={'#123abc'}
           loading={State_.loading}
         />
-        {/* <Pdf targetRef={ref} options={options} filename="code-example.pdf">
-          {({ toPdf }) => (
-            <button className={classes.btn} onClick={toPdf}>
-              Generate Pdf
-            </button>
-          )}
-        </Pdf> */}
+        
       </div>
     </div>
   );
