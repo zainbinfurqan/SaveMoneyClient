@@ -8,7 +8,6 @@ import WithLoginHeader from './pages/Header/WithLoginHeader.js'
 import WithlogoutHeader from "./pages/Header/WithlogoutHeader";
 
 
-
 function App(props) {
   let [mobileView] = useState(false);
   let [loginCheckKey, setLoginKey] = useState('')

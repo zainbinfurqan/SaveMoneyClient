@@ -67,7 +67,7 @@ function Login(props) {
     if (props.authData.LoginKey.length !== 0) {
       props.history.replace("/userhome");
     }
-  }, []);
+  }, [props]);
 
   function closeLoginHandle() {
     props.history.replace("/home");
@@ -76,9 +76,9 @@ function Login(props) {
   function chnageTextHandle(key, e) {
     setStateValues({ ...State, [key]: e.target.value });
   }
-  function goToHome() {
-    props.history.replace("/userhome");
-  }
+  // function goToHome() {
+  //   props.history.replace("/userhome");
+  // }
 
   function loginHandleBtn() {
     let { email, password } = State;
@@ -119,7 +119,7 @@ function Login(props) {
           X
         </p>
         <div className="login-icon">
-          <img src={loginicon} />
+          <img src={loginicon} alt='pic'/>
         </div>
         <h3 className={classes.h2}>Login </h3>
         <TextField

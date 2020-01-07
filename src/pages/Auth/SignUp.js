@@ -72,7 +72,7 @@ export default function SignUp(props) {
 
   useEffect(() => {
     setStates({ ...State, open: props.open });
-  }, []);
+  }, [State,props]);
 
   function registerHandleBtn() {
     let { userName, userEmail, userPassword } = State;
@@ -143,7 +143,7 @@ export default function SignUp(props) {
           X
         </p>
         <div className="signup-icon">
-          <img src={signup} />
+          <img src={signup} alt="pic"/>
         </div>
         <h3 className={classes.h2}>SignUp </h3>
         <TextField

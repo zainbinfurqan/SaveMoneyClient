@@ -26,7 +26,7 @@ function Loader(props) {
           setStates({ openLoginLoddingPanel: true, loading: true });
       }
     }
-  });
+  }, [props.openLoaderPanel, props.openLoader, States_.openLoginLoddingPanel, States_.loading]);
 
   return (
     <Dialog

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import loginreducer from './Loginreducer.js'
 import logoutreducer from './Logoutreducer.js'
+import customlist from './customListreducer'
 // import RoleReducers from "./RoleReducers";
 // import UserRolePrivellegeReducers from "./UserRolePrivellegeReducers";
 // import loginreducer from "./loginreducer";
@@ -9,7 +10,8 @@ import logoutreducer from './Logoutreducer.js'
 // import classsectionreducer from './classsectionreducer.js';
 
 export default combineReducers({
-    authData :loginreducer,logoutreducer
+    authData :loginreducer,logoutreducer,
+    customlist: customlist
     // authData :logoutreducer
     
 //   rolesData: RoleReducers,/*Muhammad Arshaq */

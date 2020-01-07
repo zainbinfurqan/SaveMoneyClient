@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 function UserHome(props) {
   const classes = useStyles();
-  let [_loginKey_, setLoginKey] = useState(false);
+  let [_loginKey_] = useState(false);
 
 
   function openAddExpendature() {
@@ -40,8 +40,10 @@ function UserHome(props) {
     props.history.replace("/user/setting");
   }
   function openPDFgenerateHandle() {
-    props.history.replace("/user/PDFgenerate");
-
+    // props.history.replace("/user/PDFgenerate");
+  }
+  function openCustomListHandle(){
+    props.history.replace("/user/customlist");
   }
 
   useEffect(() => {
@@ -59,20 +61,20 @@ function UserHome(props) {
           <Paper className={classes.root} onClick={openMonthStatus}>
             <Typography variant="p" component="p">
               Current Month Status
-            <img src={currentStatusIcon} />
+            <img src={currentStatusIcon} alt='pic'/>
             </Typography>
           </Paper>
           <Paper className={classes.root} onClick={openAddExpendature}>
             <Typography variant="p" component="p">
               Add Expensive
-            <img src={addexpendature} />
+            <img src={addexpendature} alt='pic' />
             </Typography>
           </Paper>
 
           <Paper className={classes.root} onClick={openExpendatureDetailHandle}>
             <Typography variant="p" component="p">
               Expentature Details
-            <img src={expendaturedetails} />
+            <img src={expendaturedetails} alt='pic'/>
             </Typography>
           </Paper>
           <Paper className={`${classes.root} disable`} onClick={openPDFgenerateHandle}>
@@ -88,17 +90,17 @@ function UserHome(props) {
           <Paper className={classes.root} onClick={openSelectedMonthStatusHandle}>
             <Typography variant="p" component="p">
               Selected Month Status
-            <img src={selectmonth} />
+            <img src={selectmonth} alt='pic'/>
             </Typography>
           </Paper>
 
           <Paper className={classes.root} onClick={openSettingHandle}>
             <Typography variant="p" component="p">
               Setting
-            <img src={settingicon} />
+            <img src={settingicon} alt='pic' />
             </Typography>
           </Paper>
-          <Paper className={`${classes.root} disable`} onClick={openSelectedMonthStatusHandle}>
+          <Paper className={`${classes.root}`} onClick={openCustomListHandle}>
             <Typography variant="p" component="p">
               Custom List
               <i className='fa fa-list-alt' style={{
@@ -111,7 +113,7 @@ function UserHome(props) {
           <Paper className={`${classes.root} disable`}>
             <Typography variant="p" component="p">
               Comparision
-            <img src={compaericon} />
+            <img src={compaericon} alt='pic'/>
             </Typography>
           </Paper>
         </div>

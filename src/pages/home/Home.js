@@ -154,10 +154,10 @@ function Home(props) {
         <Card className={classes.card}>
           <CardContent className={classes.cardContent}>
             <Paper className={classes.root} onClick={openloginPanelHandle}>
-              <img src={login_icn} className='home-login-icn' /> <h2 className={classes.h2}>LOGIN</h2>
+              <img src={login_icn} alt='pic' className='home-login-icn' /> <h2 className={classes.h2}>LOGIN</h2>
             </Paper>
             <Paper className={classes.root} onClick={openSignUpPanelHandle}>
-              <img src={signup_icn} className='home-login-icn' /> <h2 className={classes.h2}>SignUp</h2>
+              <img src={signup_icn} alt='pic' className='home-login-icn' /> <h2 className={classes.h2}>SignUp</h2>
             </Paper>
             <i className="fas fa-caret-right" style={{ float: 'right', margin: '4px 0px 0px 5px', fontSize: '23px' }} />
             <p style={{ float: 'right', fontWeight: '600', margin: '5px 0px' }} onClick={handleGuide}>Guide

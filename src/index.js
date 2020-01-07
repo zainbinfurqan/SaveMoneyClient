@@ -16,6 +16,7 @@ import ExpendatureDetails from './pages/Expensive/ExpendatureDetails.js'
 import Setting from './pages/Setting/Setting.js'
 import SelecteMonthExpendature from './pages/Expensive/SelectedMonthExpendature/SelecteMonthExpendature.js'
 import PDFgenerate from './pages/PFDgenerate'
+import CustomList from './pages/CustomList/CustomList'
 
 function Routing(){
  
@@ -33,6 +34,7 @@ function Routing(){
         <Route exact path="/user/selectmonth" component={SelecteMonthExpendature} />
         <Route exact path="/user/setting" component={Setting} />
         <Route exact path="/user/PDFgenerate" component={PDFgenerate} />
+        <Route exact path="/user/customlist" component={CustomList} />
         
       </Router>
     );

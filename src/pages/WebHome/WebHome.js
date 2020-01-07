@@ -27,7 +27,6 @@ function WebHome(props) {
     // })
 
     useEffect(() => {
-        console.log(props)
     })
     function openMenuHandle() {
         props.history.replace('/userhome');

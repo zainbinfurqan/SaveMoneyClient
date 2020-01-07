@@ -28,7 +28,6 @@ function CurrentMonthStatus(props) {
   }
 
   useEffect(() => {
-    console.log(props);
     if (props.authData.LoginKeyFlag !== false) {
     } else {
       props.history.replace("/home");
@@ -37,7 +36,6 @@ function CurrentMonthStatus(props) {
     };
   });
   useEffect(() => {
-
     if (props.authData.LoginKeyFlag !== false) {
       setValues({ ...State_, loading: true })
       let params = {
@@ -56,7 +54,7 @@ function CurrentMonthStatus(props) {
     } else {
       props.history.replace("/home");
     }
-  }, []);
+  }, [props]);
 
 
   return (
@@ -84,7 +82,7 @@ function CurrentMonthStatus(props) {
             <tbody>
               {State_.StausData.map(items => {
                 return (
-                  <tr>
+                  <tr style={{backgroundColor:'black'}}>
                     <td>{items.ExpendatureName}</td>
                     <td>
                       {items.Date}-{items.Month}-{items.Year}

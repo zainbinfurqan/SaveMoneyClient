@@ -1,0 +1,26 @@
+.pdf_textfile h2{
+    font-size: 15px !important;
+}
+.pdf_textfile h1{
+    font-size: 15px  !important;
+}
+.pdf_textfile table{
+    font-size: 15px !important;
+}
+.pdf_textfile table>thead>tr>th{
+    font-size: 10px !important;
+    padding: 3px;
+    /* color: black; */
+}
+.pdf_textfile table>tbody>tr>td{
+    font-size: 12px !important;
+    /* color: black; */
+    padding: 3px;
+}
+.pdf_btn button{
+    background-color: #26dbff;
+    color: black;
+    border: 0px;
+    border-radius: 2px;
+    font-size: 16px;
+}

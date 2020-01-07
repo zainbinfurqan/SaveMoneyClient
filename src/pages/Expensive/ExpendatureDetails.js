@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import { connect } from "react-redux";
 import { getcurrentmonthstatus } from "../../Redux/acion/CurrentMonthStatusAction.js";
 import "./addexpensive.css";
@@ -41,33 +41,53 @@ function ExpendatureDetails(props) {
     View: false,
     delete: false,
   });
-  function getData() {
-    let params = {
-      loginKey: props.authData.LoginKey,
-      email: props.authData.Email
-    };
-    setValues({ ...State_, loading: true });
-    setValues({ ...State_, openLoginLoddingPanel: true, loading: true });
+  // function getData() {
+  //   let params = {
+  //     loginKey: props.authData.LoginKey,
+  //     email: props.authData.Email
+  //   };
+  //   setValues({ ...State_, loading: true });
+  //   setValues({ ...State_, openLoginLoddingPanel: true, loading: true });
 
-    props.getcurrentmonthstatus(params).then(res => {
-      setValues({
-        ...State_,
-        deletePanel: false,
-        StausData: res[0],
-        loading: false,
-        openLoginLoddingPanel: false,
-        loading: false
+  //   props.getcurrentmonthstatus(params).then(res => {
+  //     setValues({
+  //       ...State_,
+  //       deletePanel: false,
+  //       StausData: res[0],
+  //       loading: false,
+  //       openLoginLoddingPanel: false,
+  //     });
+  //   });
+  // }
+  const memoizedCallback = useCallback(
+    () => {
+      // getData();
+      let params = {
+        loginKey: props.authData.LoginKey,
+        email: props.authData.Email
+      };
+      setValues({ ...State_, loading: true });
+      setValues({ ...State_, openLoginLoddingPanel: true, loading: true });
+  
+      props.getcurrentmonthstatus(params).then(res => {
+        setValues({
+          ...State_,
+          deletePanel: false,
+          StausData: res[0],
+          loading: false,
+          openLoginLoddingPanel: false,
+        });
       });
-    });
-  }
-
+    },
+    [State_,props],
+  );
   useEffect(() => {
     if (props.authData.LoginKeyFlag !== false) {
-      getData();
+      
     } else {
       props.history.replace("/home");
     }
-  }, []);
+  }, [props]);
   useEffect(() => {
     if (props.authData.LoginKeyFlag !== false) {
     } else {
@@ -75,9 +95,9 @@ function ExpendatureDetails(props) {
     }
   });
 
-  function openUpdatePanelHandle() {
-    setValues({ ...State_, openUpdate: true });
-  }
+  // function openUpdatePanelHandle() {
+  //   setValues({ ...State_, openUpdate: true });
+  // }
   
 
   function openDeletehandle(values) {
@@ -118,7 +138,7 @@ function ExpendatureDetails(props) {
         loading: false
       });
       Swal.fire(res[0].msg);
-      getData();
+      memoizedCallback();
     });
   }
 
@@ -132,7 +152,7 @@ function ExpendatureDetails(props) {
         {State_.StausData.map(items => {
           return (
             <>
-              <div className="d-flex alert alert-primary p-0  border border-secondary rounded h-75 d-inline-block my-3">
+              <div style={{color: 'black'}} className="d-flex alert alert-primary p-0  border border-secondary rounded h-75 d-inline-block my-3">
                 <div className='mr-auto p-2 align-self-start h-75'>
                   <p className="expendature-name">
                     {items.ExpendatureName.length >= 15

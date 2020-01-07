@@ -7,13 +7,14 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import ClipLoader from "react-spinners/ClipLoader";
 import profil_icon from '../../image/profile-icon.jpg'
 import { css } from "@emotion/core";
-import NetConnection from '../../utilfunction/NetConnection.js'
 import "./header.css";
 const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
 `;
+/* eslint react/prop-types: 0 */
+
 function Header(props) {
   let [loginFlag, setFlag] = useState(false);
   let [open, setOpen] = useState(false);
@@ -23,8 +24,6 @@ function Header(props) {
   });
 
   useEffect(() => {
-console.log(props)
-    console.log(NetConnection())
     window.addEventListener("resize", () => {
 
       if (window.innerWidth > 768) {
@@ -34,7 +33,7 @@ console.log(props)
         setOpen((open = false));
       }
     });
-  });
+  },[open]);
   useEffect(() => {
     if (props.AuthData.Auth.LoginKey !== "") {
 
@@ -42,7 +41,7 @@ console.log(props)
     } else {
       setFlag((loginFlag = false));
     }
-  });
+  },[props,loginFlag]);
 
   function logoutHandle() {
     setState_({ ...Stats_, openLoginLoddingPanel: true, loading: true });
@@ -55,8 +54,7 @@ console.log(props)
     });
   }
 
-  function loginHandle(){
-  }
+ 
 
   function logoutRout() {
     setState_({ ...Stats_, openLoginLoddingPanel: false, loading: false });
@@ -68,7 +66,7 @@ console.log(props)
       <div className="header">
         {loginFlag && (
           <div>
-            <button type="button" class="btn logout-btn" onClick={logoutHandle}>
+            <button type="button" className="btn logout-btn" onClick={logoutHandle}>
               LogOut
             </button>
             <img src={profil_icon} className='porfile-logo' />

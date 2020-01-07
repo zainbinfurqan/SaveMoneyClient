@@ -10,7 +10,6 @@ import ExpendatureDetails from "../pages/Expensive/ExpendatureDetails.js";
 import SelecteMonthExpendature from '../pages/Expensive/SelectedMonthExpendature/SelecteMonthExpendature.js'
 export default function Router() {
   function routChange() {
-    console.log("logout Header");
   }
 
   return (

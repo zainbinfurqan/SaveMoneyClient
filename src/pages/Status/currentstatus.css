@@ -4,15 +4,17 @@
 .statusTable {
   width: 100%;
   font-size: 11px;
+  background-color: black;
   /* margin: 0px 5px; */
 }
 .statusTable thead {
   font-family: -webkit-body;
-  background-color: #c280ff;
+  background-color:#343335;
   color: white;
 }
 .totalmoney-tr{
   font-weight: 700;
+  background-color: black !important;
 }
 .pdf-page{
   width: 90%;

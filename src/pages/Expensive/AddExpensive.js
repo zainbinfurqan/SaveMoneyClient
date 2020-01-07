@@ -74,7 +74,6 @@ function AddExpensive(props) {
   });
 
   useEffect(() => {
-    console.log(props);
     if (props.AuthData.Auth.LoginKeyFlag !== false) {
     } else {
       props.history.replace("/home");

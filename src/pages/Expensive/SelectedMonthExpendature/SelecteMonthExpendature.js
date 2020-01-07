@@ -10,6 +10,7 @@ import { css } from "@emotion/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import ProgressBar from '../../../component/progressbar/ProgressBar'
 const override = css`
   display: block;
   margin: 0 auto;
@@ -43,7 +44,8 @@ function SelecteMonthExpendature(props) {
     StausData: [],
     TotalAmmount: "",
     openLoginLoddingPanel: false,
-    loading: false
+    loading: false,
+    barData: []
   });
 
   function closeSelectedExpendatureHanlde() {
@@ -69,7 +71,8 @@ function SelecteMonthExpendature(props) {
             StausData: res[0],
             TotalAmmount: res[1][0].TotalMoney,
             openLoginLoddingPanel: false,
-            loading: false
+            loading: false,
+            barData: res[2]
           });
         } else {
           Swal.fire("no data found")
@@ -97,7 +100,7 @@ function SelecteMonthExpendature(props) {
             value=""
             disabled={true}
             selected={true}
-            style={{ color: "white" }}
+            style={{ color: "black", backgroundColor: '#fdfdfd' }}
           >
             Select Month
         </option>
@@ -123,7 +126,8 @@ function SelecteMonthExpendature(props) {
         >
           Fetch Data
       </Button>
-        <div>
+
+        {/* <div>
           <table className="statusTable table-striped">
             <thead>
               <tr>
@@ -151,7 +155,24 @@ function SelecteMonthExpendature(props) {
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> */}
+      </div>
+      <div style={{ margin: '0px 5px 0px 5px' }}>
+        <p style={{
+          margin: 'auto',
+          textAlign: 'center'
+        }}>Total Ammount: <span style={{
+          fontWeight: 700
+        }}>{_States.TotalAmmount}</span></p>
+        {_States.barData.map((itm, ind) => {
+          return (
+            <div style={{
+              marginTop: '10px'
+            }}>
+              <ProgressBar total={_States.TotalAmmount} spend={itm} ind={ind} />
+            </div>
+          )
+        })}
       </div>
       <Dialog
         open={_States.openLoginLoddingPanel}
